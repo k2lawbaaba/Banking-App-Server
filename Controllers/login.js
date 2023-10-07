@@ -23,9 +23,9 @@ const login = async (context, Username, password) => {
           console.log(token);
         context.res.cookie("userToken", JSON.stringify(token), {
           maxAge: 1000 * 60 * 60,
-          httpOnly: true,
-          secure:true,
-          domain: "https://banking-app-ftov.onrender.com/"
+          // httpOnly: true,
+          // secure:true,
+          domain: "banking-app-ftov.onrender.com/"
          
         });
         return `Logged in successfully`;
