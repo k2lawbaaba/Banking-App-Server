@@ -12,11 +12,15 @@ require('dotenv').config();
 let PORT= process.env.PORT 
 const app = exp();
 
-// const allowedURLS=["http://localhost:3000","http://localhost:4002","https://chartreuse-green-python-wrap.cyclic.app"]
+const allowedURLS=["http://localhost:3000","http://localhost:4002","https://banking-app-ftov.onrender.com"]
 // middlewares
-app.use(cors());
+app.set("trust proxy", 1);
 app.use(cookieParser());
-// 
+app.use(cors({
+  origin: allowedURLS,
+  credentials: true,
+  exposedHeaders: ['Set-Cookie', 'Date', 'ETag']
+}));
 app.use(verifyToken);
   
 // app.use(exp.static(path.join(__dirname, './Client/build')));
@@ -34,18 +38,18 @@ app.use(verifyToken);
         res: res,
       email: req.email,
     },
-    // cors: {
-    //   origin: allowedURLS,
-    //   methods: ['GET', 'POST'],
-    //   headers: ['Authorization'],
-    //   credentials: true,
-    // },
+    playground:true,
+    cors: {
+      credentials: true,
+      origin: "*"
+  }
+  
   }))
   );
-
+  
   // app.get("*",(req,res)=>{
-  //   res.sendFile(path.join(__dirname,"./Client/build/index.html"))
-  // })
+    //   res.sendFile(path.join(__dirname,"./Client/build/index.html"))
+    // })
   
 
   ConnectMongoose().then(()=>{
