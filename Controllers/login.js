@@ -21,15 +21,15 @@ const login = async (context, Username, password) => {
           }
         );
         
-        context.res.cookie("userToken", JSON.stringify(token), {
-          maxAge: 1000 * 60 * 60,
-          httpOnly: true,
-          secure:true,
-          domain: "banking-app-ftov.onrender.com/",
-          // sameSite: "None"
+        // context.res.cookie("userToken", JSON.stringify(token), {
+        //   maxAge: 1000 * 60 * 60,
+        //   httpOnly: true,
+        //   secure:true,
+        //   domain: "banking-app-ftov.onrender.com/",
+        //   // sameSite: "None"
          
-        });
-        return `Logged in successfully`;
+        // });
+       return(token)
       } else return "Invalid Username or password";
     }
   } catch (error) {
